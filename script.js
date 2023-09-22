@@ -48,9 +48,11 @@ btnLongo.addEventListener('click', () => {
 
 function alteraContexto(contexto) {
     mostraTempo();
+
     buttons.forEach(function (target) {
         target.classList.remove('active');
     })
+
     html.setAttribute('data-contexto', contexto);
     banner.setAttribute('src', `./imagens/${contexto}.png`);
 
@@ -114,8 +116,8 @@ function zerar() {
 btnStartPause.addEventListener('click', iniciarPausar);
 
 function mostraTempo() {
-    const tempo = new Date(tempoDecorridoEmSegundos * 1000);
-    const tempoFormatado = tempo.toLocaleTimeString('pt-Br', {minute: '2-digit', second: '2-digit'});
+    const tempo = new Date(tempoDecorridoEmSegundos * 1000);    /* Cria data em milissegundos a partir de hora 0 */
+    const tempoFormatado = tempo.toLocaleTimeString('pt-Br', {minute: '2-digit', second: '2-digit'});   /* Converte horário da data para minutos e segundos, ambos com 2 dígitos */
     tempoNaTela.innerHTML = `${tempoFormatado}`;
 }
 
