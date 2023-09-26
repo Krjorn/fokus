@@ -6,7 +6,9 @@ const banner = document.querySelector('.app__image');
 const titulo = document.querySelector('.app__title');
 const buttons = document.querySelectorAll('.app__card-button');
 const btnStartPause = document.querySelector('#start-pause');
-const btnComecarPausar = document.querySelector('#start-pause span');
+const btnRestart = document.querySelector('#restart');
+const btnRestartImg = document.querySelector('#restart img');
+const btnComecarPausarTexto = document.querySelector('#start-pause span');
 const imgComecarPausar = document.querySelector('.app__card-primary-button-icon');
 const tempoNaTela = document.querySelector('#timer');
 const musicaFocoInput = document.querySelector('#alternar-musica');
@@ -102,18 +104,49 @@ function iniciarPausar() {
     }
     audioPlay.play();
     intervaloId = setInterval(contagemRegressiva, 1000);
-    btnComecarPausar.textContent = 'Pausar';
+    btnComecarPausarTexto.textContent = 'Pausar';
     imgComecarPausar.setAttribute('src', './imagens/pause.png');
 }
 
 function zerar() {
     clearInterval(intervaloId);
-    btnComecarPausar.textContent = 'Começar';
+    btnComecarPausarTexto.textContent = 'Começar';
     imgComecarPausar.setAttribute('src', './imagens/play_arrow.png');
     intervaloId = null;
 }
 
 btnStartPause.addEventListener('click', iniciarPausar);
+
+function reiniciarContador() {
+    const contexto = html.dataset.contexto;
+    
+    switch (contexto) {
+        case 'foco':
+            tempoDecorridoEmSegundos = 1500;
+            mostraTempo();
+            break;
+
+        case 'descanso-curto':
+            tempoDecorridoEmSegundos = 300;
+            mostraTempo();
+            break;
+
+        case 'descanso-longo':
+        tempoDecorridoEmSegundos = 900;
+        mostraTempo();
+        break;
+    
+        default:
+            break;
+    }
+
+    btnRestartImg.classList.add('spin');
+    setTimeout(() => {
+        btnRestartImg.classList.remove('spin');
+    }, 750);
+}
+
+btnRestart.addEventListener('click', reiniciarContador);
 
 function mostraTempo() {
     const tempo = new Date(tempoDecorridoEmSegundos * 1000);    /* Cria data em milissegundos a partir de hora 0 */

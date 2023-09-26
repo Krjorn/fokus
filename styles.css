@@ -143,6 +143,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
 }
 
 .app__card-primary-button {
@@ -164,6 +165,16 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 1rem;
     font-family: Montserrat;
+}
+
+.spin {
+    animation: spin .75s ease-in-out;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(-360deg);
+    }
 }
 
 .app__footer {
