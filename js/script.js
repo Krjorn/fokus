@@ -90,6 +90,22 @@ const contagemRegressiva = () => {
         audioTempoFinalizado.play();
         alert('Tempo finalizado!');
         zerar();
+
+        const focoAtivo = html.getAttribute('data-contexto') === 'foco';
+        if (focoAtivo) {            
+            var event = new CustomEvent("TarefaFinalizada", {
+                detail: {
+                    message: "A tarefa foi concluída com sucesso!",
+                    time: new Date(),
+                },
+                bubbles: true,
+                cancelable: true
+            });
+            document.dispatchEvent(event);
+            // tempoDecorridoEmSegundos = 5;
+            // mostraTempo();
+        }
+
         return;
     }
     tempoDecorridoEmSegundos -= 1;
