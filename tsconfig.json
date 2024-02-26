@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "noEmitOnError": false,
+        "removeComments": true,
+        "outDir": "./js/"
+    },
+    "include": [
+        "./ts/**/*"
+    ]
+}
